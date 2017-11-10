@@ -1,0 +1,10 @@
+C:\dev\hxgitlab\HAT\ort-workshop-201712\OrtWorkshopBackend\bin\Debug\netcoreapp2.0\OrtWorkshopBackend.deps.json
+C:\dev\hxgitlab\HAT\ort-workshop-201712\OrtWorkshopBackend\bin\Debug\netcoreapp2.0\OrtWorkshopBackend.runtimeconfig.json
+C:\dev\hxgitlab\HAT\ort-workshop-201712\OrtWorkshopBackend\bin\Debug\netcoreapp2.0\OrtWorkshopBackend.runtimeconfig.dev.json
+C:\dev\hxgitlab\HAT\ort-workshop-201712\OrtWorkshopBackend\bin\Debug\netcoreapp2.0\OrtWorkshopBackend.dll
+C:\dev\hxgitlab\HAT\ort-workshop-201712\OrtWorkshopBackend\bin\Debug\netcoreapp2.0\OrtWorkshopBackend.pdb
+C:\dev\hxgitlab\HAT\ort-workshop-201712\OrtWorkshopBackend\obj\Debug\netcoreapp2.0\OrtWorkshopBackend.csproj.CoreCompileInputs.cache
+C:\dev\hxgitlab\HAT\ort-workshop-201712\OrtWorkshopBackend\obj\Debug\netcoreapp2.0\OrtWorkshopBackend.AssemblyInfoInputs.cache
+C:\dev\hxgitlab\HAT\ort-workshop-201712\OrtWorkshopBackend\obj\Debug\netcoreapp2.0\OrtWorkshopBackend.AssemblyInfo.cs
+C:\dev\hxgitlab\HAT\ort-workshop-201712\OrtWorkshopBackend\obj\Debug\netcoreapp2.0\OrtWorkshopBackend.dll
+C:\dev\hxgitlab\HAT\ort-workshop-201712\OrtWorkshopBackend\obj\Debug\netcoreapp2.0\OrtWorkshopBackend.pdb
