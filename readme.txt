@@ -34,5 +34,3 @@ Archivo: Service.Contract\IGenreService.cs
 Archivo: Service.Contract\IMovieService.cs
 Archivo: Service.Implement\GenreService.cs
 Archivo: Service.Implement\MovieService.cs
-
-
