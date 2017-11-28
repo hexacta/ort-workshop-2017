@@ -38,7 +38,14 @@ namespace OrtWorkshopBackend
 
             services.AddLogging();
 
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials() );
+            });
 
             services.AddMvc();
         }
@@ -52,6 +59,7 @@ namespace OrtWorkshopBackend
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors("CorsPolicy");
 
             app.UseMvc();
         }

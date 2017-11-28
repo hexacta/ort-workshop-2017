@@ -5,10 +5,12 @@
       <tr>
         <th>Title</th>
         <th>Genre</th>
+        <th></th>
       </tr>
-      <tr v-for="movie in movies">
+      <tr v-for="movie in movies" :key="movie.movieId">
         <td>{{ movie.title }}</td>
         <td>{{ movie.genre }}</td>
+        <td v-on:click="remove(movie)">Delete</td>
       </tr>
     </table>
   </div>
@@ -20,9 +22,18 @@ import Services from '@/services'
 export default {
   name: 'List',
   data () {
-    return {
+    let data = {
       msg: 'List',
-      movies: Services.getMovies()
+      movies: []
+    }
+    Services.getMovies().then(response => response.json()).then((jsonResponse) => {
+      data.movies = jsonResponse
+    })
+    return data
+  },
+  methods: {
+    remove: (movie) => {
+      Services.removeMovie(movie)
     }
   }
 }
