@@ -4,8 +4,20 @@ export default {
   getMovies: () => {
     return fetch(url)
   },
+  getMovie: (id) => {
+    return fetch(`${url}/${id}`)
+  },
   saveMovie: (movie) => {
-
+    return fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(movie)
+    })
+  },
+  updateMovie: (movie) => {
   },
   removeMovie: (movie) => {
     return fetch(`${url}/${movie.movieId}`, {method: 'DELETE'})

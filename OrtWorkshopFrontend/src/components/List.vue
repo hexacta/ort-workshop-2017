@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
+    <h1>Movies</h1>
     <table>
       <tr>
         <th>Title</th>
@@ -8,9 +8,9 @@
         <th></th>
       </tr>
       <tr v-for="movie in movies" :key="movie.movieId">
-        <td>{{ movie.title }}</td>
+        <td><a :href="'#/edit/' + movie.movieId">{{ movie.title }}</a></td>
         <td>{{ movie.genre }}</td>
-        <td v-on:click="remove(movie)">Delete</td>
+        <td><a v-on:click="remove(movie)">Delete</a></td>
       </tr>
     </table>
   </div>
@@ -21,19 +21,25 @@ import Services from '@/services'
 
 export default {
   name: 'List',
-  data () {
-    let data = {
-      msg: 'List',
+  data: () => {
+    return {
       movies: []
     }
-    Services.getMovies().then(response => response.json()).then((jsonResponse) => {
-      data.movies = jsonResponse
-    })
-    return data
+  },
+  created: function () {
+    this.load()
   },
   methods: {
-    remove: (movie) => {
+    load: function () {
+      Services.getMovies()
+      .then(response => response.json())
+      .then((jsonResponse) => {
+        this.movies = jsonResponse
+      })
+    },
+    remove: function (movie) {
       Services.removeMovie(movie)
+      .then(() => this.load())
     }
   }
 }
@@ -41,18 +47,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+table {
+  width: 500px;
+  margin: auto;
 }
 </style>

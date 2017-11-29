@@ -1,19 +1,24 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
-    <div>
-      <label for="title">Title</label>
-      <input type="text" id="title" v-model="title"/>
-    </div>
-    <div>
-      <label for="genre">Genre</label>
-      <select id="genre" v-model="genre">
-        <option value="action">Action</option>
-        <option value="comedy">Comedy</option>
-        <option value="horror">Horror</option>
-      </select>
-    </div>
-    <button type="button" v-on:click="save()">Save</button>
+      <h2>New Movie</h2>
+      <div class="form">
+        <label for="title">Title</label>
+        <input type="text" id="title" v-model="movie.title"/>
+      </div>
+      <div class="form">
+        <label for="genre">Genre</label>
+        <input type="text" id="genre" v-model="movie.genre"/>
+      </div>
+      <div class="form">
+        <label for="year">Year</label>
+        <input type="number" id="year" v-model="movie.year"/>
+      </div>
+      <div class="form">
+        <label for="director">Director</label>
+        <input type="text" id="director" v-model="movie.director"/>
+      </div>
+      <button type="button" v-on:click="cancel()">Cancel</button>
+      <button type="button" v-on:click="save()">Save</button>
   </div>
 </template>
 
@@ -22,19 +27,18 @@ import Services from '@/services'
 
 export default {
   name: 'New',
-  data () {
+  data: () => {
     return {
-      msg: 'New movie',
-      title: '',
-      genre: ''
+      movie: {}
     }
   },
   methods: {
     save: function () {
-      Services.saveMovie({
-        title: this.title,
-        genre: this.genre
-      })
+      Services.saveMovie(this.movie)
+      .then(() => this.$router.push('/list'))
+    },
+    cancel: function () {
+      this.$router.push('/list')
     }
   }
 }
@@ -42,18 +46,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 </style>
