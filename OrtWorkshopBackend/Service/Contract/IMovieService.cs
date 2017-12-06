@@ -1,19 +1,19 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OrtWorkshopBackend.Data.Entities;
+using OrtWorkshopBackend.Data.Models;
 
 namespace OrtWorkshopBackend.Service.Contract
 {
     public interface IMovieService
     {
-        Task<Movie> Get(int movieId);
+        Task<MovieModel> Get(int movieId);
 
-        Task<IEnumerable<Movie>> GetAll();
+        Task<IEnumerable<MovieModel>> GetAll();
 
-        Task<int> Add(Movie movie);
+        Task<int> Add(MovieModel movieModel);
         
         Task Remove(int movieId);
         
-        Task Update(int movieId, Movie movie);
+        Task Update(int movieId, MovieModel movieModel);
     }
 }

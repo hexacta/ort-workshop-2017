@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using OrtWorkshopBackend.Data.Entities;
+using OrtWorkshopBackend.Data.Models;
 using OrtWorkshopBackend.Service.Contract;
 
 namespace OrtWorkshopBackend.Controllers
@@ -28,9 +28,9 @@ namespace OrtWorkshopBackend.Controllers
         {
             logger.LogInformation("Get all movies");
 
-            IEnumerable<Movie> movies = await this.movieService.GetAll();
+            IEnumerable<MovieModel> moviesModel = await this.movieService.GetAll();
 
-            return Ok(movies);
+            return Ok(moviesModel);
         }
 
         [HttpGet("{id}")]
@@ -38,30 +38,30 @@ namespace OrtWorkshopBackend.Controllers
         {
             logger.LogInformation($"Get movie with ID '{id}'");
             
-            Movie movie = await this.movieService.Get(id);
+            MovieModel movieModel = await this.movieService.Get(id);
 
-            return Ok(movie);
+            return Ok(movieModel);
         }
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Movie movie)
+        public async Task<IActionResult> Post([FromBody]MovieModel movieModel)
         {
-            logger.LogInformation($"New movie title '{movie.Title}'");
+            logger.LogInformation($"New movie title '{movieModel.Title}'");
             
-            int movieId = await this.movieService.Add(movie);
+            int movieId = await this.movieService.Add(movieModel);
 
             return Ok(new { movieId = movieId });
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult>  Put(int id, [FromBody]Movie movie)
+        public async Task<IActionResult>  Put(int id, [FromBody]MovieModel movieModel)
         {
-            logger.LogInformation($"Update movie title '{movie.Title}'");
+            logger.LogInformation($"Update movie title '{movieModel.Title}'");
 
             //TODO Workshop
-            //await this.movieService.Update(id, movie);
-        
+            //await this.movieService.Update(id, movieModel);
+
             await Task.CompletedTask;
 
             return Ok();

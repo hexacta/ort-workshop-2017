@@ -22,7 +22,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\ttitle: \"The Godfather\",\r\n\tyear: 1972,\r\n\tdirector: \"Francis Ford Coppola\",\r\n\tgenre: \"Crime, Drama\"\r\n}"
+							"raw": "{\r\n\t\"title\": \"The Godfather\",\r\n\t\"year\": 1972,\r\n\t\"director\": \"Francis Ford Coppola\",\r\n\t\"genre\": \"Crime, Drama\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/movie/",
@@ -43,6 +43,29 @@
 				},
 				{
 					"name": "Get movies",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:5000/api/movie/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"movie",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Get movies dinamic",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -122,7 +145,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\ttitle: \"The Godfather (update)\",\r\n\tyear: 1972,\r\n\tdirector: \"Francis Ford Coppola\",\r\n\tgenre: \"Crime, Drama\"\r\n}"
+							"raw": "{\r\n\t\"title\": \"The Godfather (update)\",\r\n\t\"year\": 1972,\r\n\t\"director\": \"Francis Ford Coppola\",\r\n\t\"genre\": \"Crime, Drama\"\r\n}"
 						},
 						"url": {
 							"raw": "http://localhost:5000/api/movie/3",

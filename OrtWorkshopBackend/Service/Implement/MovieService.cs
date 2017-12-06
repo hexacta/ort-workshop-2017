@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using OrtWorkshopBackend.Data;
 using OrtWorkshopBackend.Data.Entities;
+using OrtWorkshopBackend.Data.Models;
 using OrtWorkshopBackend.Service.Contract;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
@@ -23,27 +24,35 @@ namespace OrtWorkshopBackend.Service.Implement
             this.ortWorkshopContext = ortWorkshopContext; 
         }
 
-        public async Task<Movie> Get(int movieId)
+        public async Task<MovieModel> Get(int movieId)
         {
             logger.LogInformation($"Service get movie ID '{movieId}'");
 
             Movie movie = await this.ortWorkshopContext.Movie.FindAsync(movieId);
 
-            return movie;
+            MovieModel movieModel = this.ConvertEntityToModel(movie);
+
+            return movieModel;
         }
 
-        public async Task<IEnumerable<Movie>> GetAll()
+        public async Task<IEnumerable<MovieModel>> GetAll()
         {
             logger.LogInformation($"Service get all movies");
 
             List<Movie> movies = await this.ortWorkshopContext.Movie.ToListAsync();
 
-            return movies;
+            var moviesModel = new List<MovieModel>();
+
+            movies.ForEach(entity => moviesModel.Add(this.ConvertEntityToModel(entity)));
+
+            return moviesModel;
         }
 
-        public async Task<int> Add(Movie movie)
+        public async Task<int> Add(MovieModel movieModel)
         {
-            logger.LogInformation($"Service add movie title '{movie.Title}'");
+            logger.LogInformation($"Service add movie title '{movieModel.Title}'");
+
+            Movie movie = this.ConvertModelToEntity(movieModel);
 
             EntityEntry<Movie> movieNew = this.ortWorkshopContext.Movie.Add(movie);
 
@@ -63,7 +72,7 @@ namespace OrtWorkshopBackend.Service.Implement
             await this.ortWorkshopContext.SaveChangesAsync();
         }
 
-        public async Task Update(int movieId, Movie movie)
+        public async Task Update(int movieId, MovieModel movieModel)
         {
             logger.LogInformation($"Service update movie ID '{movieId}'");
 
@@ -73,10 +82,39 @@ namespace OrtWorkshopBackend.Service.Implement
             /*
             Steps:
             search movie
+            copy movie model data to movie entity
             update movie from movie parameter
             update status
             save changes
             */
+        }
+
+        private MovieModel ConvertEntityToModel(Movie movie)
+        {
+            var movieModel = new MovieModel
+            {
+                MovieId = movie.MovieId,
+                Director = movie.Director,
+                Genre = movie.Genre,
+                Title = movie.Title,
+                Year = movie.Year,
+            };
+
+            return movieModel;
+        }
+
+        private Movie ConvertModelToEntity(MovieModel movieModel)
+        {
+            var movie = new Movie
+            {
+                MovieId = movieModel.MovieId,
+                Director = movieModel.Director,
+                Genre = movieModel.Genre,
+                Title = movieModel.Title,
+                Year = movieModel.Year,
+            };
+
+            return movie;
         }
     }
 }
