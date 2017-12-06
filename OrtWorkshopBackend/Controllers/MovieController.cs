@@ -43,7 +43,6 @@ namespace OrtWorkshopBackend.Controllers
             return Ok(movieModel);
         }
 
-        // POST api/values
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]MovieModel movieModel)
         {
@@ -55,14 +54,16 @@ namespace OrtWorkshopBackend.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult>  Put(int id, [FromBody]MovieModel movieModel)
+        public async Task<IActionResult> Put(int id, [FromBody]MovieModel movieModel)
         {
             logger.LogInformation($"Update movie title '{movieModel.Title}'");
 
             //TODO Workshop
-            //await this.movieService.Update(id, movieModel);
 
+            //remove this line
             await Task.CompletedTask;
+
+            //call movieService to update movie
 
             return Ok();
         }

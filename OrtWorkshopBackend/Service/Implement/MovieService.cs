@@ -8,6 +8,7 @@ using OrtWorkshopBackend.Data.Entities;
 using OrtWorkshopBackend.Data.Models;
 using OrtWorkshopBackend.Service.Contract;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Net;
 
 namespace OrtWorkshopBackend.Service.Implement
 {
@@ -29,6 +30,11 @@ namespace OrtWorkshopBackend.Service.Implement
             logger.LogInformation($"Service get movie ID '{movieId}'");
 
             Movie movie = await this.ortWorkshopContext.Movie.FindAsync(movieId);
+
+            if (movie == null)
+            {
+                throw new OrtWorkshopException(HttpStatusCode.NotFound, $"The movie with ID {movieId} wasn't found.");
+            }
 
             MovieModel movieModel = this.ConvertEntityToModel(movie);
 
@@ -67,6 +73,11 @@ namespace OrtWorkshopBackend.Service.Implement
 
             Movie movieDelete = await this.ortWorkshopContext.Movie.FindAsync(movieId);
 
+            if (movieDelete == null)
+            {
+                throw new OrtWorkshopException(HttpStatusCode.NotFound, $"The movie with ID {movieId} wasn't found.");
+            }
+
             this.ortWorkshopContext.Entry<Movie>(movieDelete).State = EntityState.Deleted; 
 
             await this.ortWorkshopContext.SaveChangesAsync();
@@ -77,16 +88,18 @@ namespace OrtWorkshopBackend.Service.Implement
             logger.LogInformation($"Service update movie ID '{movieId}'");
 
             //TODO Workshop
+
+            //anular este paso
             await Task.CompletedTask;
 
-            /*
-            Steps:
-            search movie
-            copy movie model data to movie entity
-            update movie from movie parameter
-            update status
-            save changes
-            */
+            //Steps
+            //search movie
+
+            //update movie from movie parameter
+
+            //update status
+
+            //save changes
         }
 
         private MovieModel ConvertEntityToModel(Movie movie)
