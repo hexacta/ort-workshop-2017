@@ -1,3 +1,6 @@
 **/.vscode
+**/node_modules
 OrtWorkshopBackend/bin
 OrtWorkshopBackend/obj
+OrtWorkshopBackend_Final/bin
+OrtWorkshopBackend_Final/obj
