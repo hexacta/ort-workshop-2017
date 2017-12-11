@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h2>New Movie</h2>
+      <h2>Edit Movie</h2>
       <div class="form">
         <label for="title">Title</label>
         <input type="text" id="title" v-model="movie.title"/>
@@ -29,7 +29,7 @@ export default {
   name: 'Edit',
   data: () => {
     return {
-      movie:{}
+      movie: {}
     }
   },
   created: function () {
@@ -50,7 +50,7 @@ export default {
     cancel: function () {
       this.$router.push('/list')
     }
-  }  
+  }
 }
 </script>
 
